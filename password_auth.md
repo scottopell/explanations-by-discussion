@@ -25,8 +25,23 @@ following discussion.
   directly. Would you say that that's accurate?
 - Alice: Yup, I think you got to the core of it. There needs to be a system
   where even if an attacker has your database, they still can't get in.
-- Eve: Exactly. So I figured that what you want to do is store something that
-  you can check their password against, but it isn't just their password.
+- Eve: So basically we want to keep these passwords a secret. And keeping
+  secrets is a pretty well explored problem; we'll just encrypt the passwords!
+- Alice: Hmm, so you would have one secret key that you would use to encrypt
+  everybody's passwords, and you'd just store that somewhere else?
+- Eve: Yea, so if the database was compromised then nobody would have my user's
+  original passwords, but instead they'd just have this encrypted blob.
+- Alice: But now you have a single point of failure. If you had a really
+  determined attacker, they could crack your encryption then all of your user's
+  passwords would be out in the open.
+- Eve: Hmm. You're right. This solution depends on the strength of the
+  encryption and my ability to keep the secret key safe. I'll see if I can come
+  up with something that doesn't have this single point of failure.
+
+## Scene 3
+- Eve: I think I got it! So I figured that at the core of this is the idea that
+  what you want to store something that you can check their password against,
+  but it isn't just their password.
 - Alice: I like where you're going with this, tell me more!
 - Eve: So, we want an operation that we can apply to each user's password that
   is one-way only. That is, you can go from a password to this representation,
@@ -47,7 +62,7 @@ following discussion.
   even though you're only storing the digest.
 - Eve: Hmm. I guess nothing. I'll do some research and get back to you.
 
-## Scene 3
+## Scene 4
 - Eve: Hey Alice, I figured out how to stop somebody from just precomputing
   hashes for common passwords.
 - Alice: Great! How's it work?
